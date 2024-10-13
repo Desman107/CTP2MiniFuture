@@ -3,7 +3,7 @@
 MarketData::MarketData():mdapi(nullptr){
     mdapi = CThostFtdcMdApi::CreateFtdcMdApi();
     mdapi -> RegisterSpi(this);
-    mdapi -> RegisterFront((char*)"tcp://180.168.146.187:10131");
+    mdapi -> RegisterFront((char*)"");
     mdapi -> Init();
     mdapi -> Join();
     mdapi -> Release();
@@ -12,9 +12,9 @@ MarketData::MarketData():mdapi(nullptr){
 void MarketData::OnFrontConnected(){
     printf("connected");
     CThostFtdcReqUserLoginField t{};
-    strcpy(t.BrokerID, "9999");
-    strcpy(t.UserID,"226478");
-    strcpy(t.Password,"792@Qq&com");
+    strcpy(t.BrokerID, "");
+    strcpy(t.UserID,"");
+    strcpy(t.Password,"");
 
     int rtn = mdapi -> ReqUserLogin(&t,++nReqID);
     printf("%d",rtn);
